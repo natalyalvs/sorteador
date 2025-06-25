@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 import 'dart:math';
 
@@ -13,28 +14,29 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   //isso é uma lista de texto, que contém o endereço das imagens
   List<String> images = ['assets/1.jpg', 'assets/2.jpg', 'assets/3.jpg'];
-
   List<int> imagemSelecionada = [0, 1, 2];
-  void sortear() 
-  {
+  //int somatoria - 0;
+  double somatorio = 100.00;
+
+  void sortear() {
     int i = 0;
-    while(i > 5){
-    setState(() {
-      imagemSelecionada[0] = Random().nextInt(images.length);
-    });
-    setState(() {
-      imagemSelecionada[1] = Random().nextInt(images.length);
-    });
-    setState(() {
-      imagemSelecionada[2] = Random().nextInt(images.length);
-    });
-      sleep(Duration(milliseconds:500));
+    while (i < 5) {
+      setState(() {
+        imagemSelecionada[0] = Random().nextInt(2);
+      });
+      setState(() {
+        imagemSelecionada[1] = Random().nextInt(2);
+      });
+      setState(() {
+        imagemSelecionada[2] = Random().nextInt(2);
+      });
+      sleep(Duration(milliseconds: 500));
       i++;
     }
 
-
     if (imagemSelecionada[0] == imagemSelecionada[1] &&
         imagemSelecionada[1] == imagemSelecionada[2]) {
+      somatorio = somatorio + 100.00;
       showDialog(
         context: context,
         builder:
@@ -43,7 +45,10 @@ class _HomePageState extends State<HomePage> {
               content: Text("Você Ganhou!"),
             ),
       );
-    }
+      } else{
+         somatorio = somatorio - 100.00;
+      }
+    
   }
 
   @override
@@ -60,7 +65,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
 
-        backgroundColor: const Color.fromARGB(255, 62, 15, 234),
+        backgroundColor: const Color.fromARGB(255, 27, 136, 232),
       ),
       backgroundColor: const Color.fromARGB(255, 27, 136, 232),
       floatingActionButton: FloatingActionButton.large(
@@ -95,14 +100,10 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          Row(
-            children: [
-              Text("pontos") 
-            ],
-          )
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          Text(somatorio.toString())
+  ]
+  ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
