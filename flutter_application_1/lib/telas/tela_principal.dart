@@ -100,7 +100,13 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          Text(somatorio.toString())
+          Text(
+            "Pontuação: " + somatorio.toString(),
+             style: TextStyle(fontSize: 30,
+              color: Colors.black, 
+             fontWeight: FontWeight.w900,
+             backgroundColor: Color.fromARGB(0,252, 255,255)) 
+             ),
   ]
   ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
